@@ -45,7 +45,8 @@ public abstract class Account {
     public double tongSoDu() {
         return this.soDu += this.tinhTienLai();
     }
-
+    
+    
     public int tinhNgayGui() {
         int d1 = this.ngayTaoTK.get(Calendar.DAY_OF_YEAR);
         int d2 = new GregorianCalendar().get(Calendar.DAY_OF_YEAR);

@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
 public class QuanLyKhachHang {
 
     private List<KhachHang> dsKH = new ArrayList<>();
+    private List<TaiKhoanCoKyHan> dsTKKH = new ArrayList<>();
 
+    
     //them KH
     public void themKH(KhachHang kh) {
         this.dsKH.add(kh);
@@ -33,8 +35,8 @@ public class QuanLyKhachHang {
 //        for (Account ac : kh.getDsAC()) {
 //            ac.hienThiTK();
         System.out.printf("Tien lai = %.0fVND\n", kh.getTk().tinhTienLai());
-
     }
+
 
 //    tim KH theo Ten
     public KhachHang timKHTheoTen(String ht) {

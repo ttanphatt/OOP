@@ -37,7 +37,6 @@ public class TaiKhoan extends Account {
     public double tinhTienLai() {
 //        return (this.soDu * 0.002 * this.tinhNgayGui()/365);
                 return (this.soDu * 0.002 * tinhNgayGui())/365;
-        
 
     }
 

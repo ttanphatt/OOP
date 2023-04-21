@@ -18,13 +18,13 @@ public class demo {
         int chon1 = 0;
         KhachHang khDN;
         //-------------------- TEST------------------
-        KhachHang kh1 = new KhachHang("hoang", "nam", "gl", "23233", "23/09/2001", 200000, "hoangou", new TaiKhoan(150000));
+        KhachHang kh1 = new KhachHang("hoang", "nam", "gl", "23233", "23/09/2001", 200000, "hoangou", new TaiKhoan(200000));
         TaiKhoanCoKyHan acc2 = new TaiKhoanCoKyHan(KyHan.MOT_TUAN, 200000);
         TaiKhoanCoKyHan acc3 = new TaiKhoanCoKyHan(KyHan.MOT_THANG, 500000);
         kh1.themAccount(acc2, acc3);
         acc2.setNgayDaoHan(new GregorianCalendar());
         acc3.setNgayDaoHan(new GregorianCalendar());
-
+        
         System.out.printf("*Password: %d\n", kh1.getTk().matKhau);
         System.out.printf("So tai khoan khong ky han: %s\n", kh1.getMaSoKH());
         System.out.printf("So tai khoan co ky han: %s\n", acc2.getSTKcoKyHan());
@@ -171,18 +171,16 @@ public class demo {
                         switch (chon3) {
                             case 1: {
                                 double tiengui;
-                                do
-                                {
+                                do {
                                     System.out.print("Nhap so tien muon gui (>=100000): ");
                                     tiengui = DungChung.sc.nextDouble();
-                                }while(tiengui<100000);
-                                        
+                                } while (tiengui < 100000);
+
                                 double tienconlai = khDN.getTk().soDu - tiengui;
-                                if(tienconlai <  50000 || tiengui < 100000)
-                                {
-                                    System.out.print("Khong du tien de mo tai khoang co ki han!");                              
+                                if (tienconlai < 50000 || tiengui < 100000) {
+                                    System.out.print("Khong du tien de mo tai khoang co ki han!");
                                 } else {
-                                    khDN.getTk().soDu=tienconlai;
+                                    khDN.getTk().soDu = tienconlai;
                                     System.out.print("    Ky han: \n"
                                             + "     1. 1 tuan \n"
                                             + "     2. 1 thang \n"
@@ -197,34 +195,34 @@ public class demo {
                                             khDN.themAccount(acc);
                                             System.out.println("=== THONG TIN TAI KHOAN VUA TAO ===");
                                             acc.hienThiTK();
-                                            
+
                                             break;
-                                            
+
                                         }
                                         case 2: {
                                             acc = new TaiKhoanCoKyHan(KyHan.MOT_THANG, tiengui);
                                             khDN.themAccount(acc);
-                                            System.out.println("=== THONG TIN TAI KHOAN VUA TAO ===");                                            
+                                            System.out.println("=== THONG TIN TAI KHOAN VUA TAO ===");
                                             acc.hienThiTK();
-                                            
+
                                             break;
                                         }
 
                                         case 3: {
                                             acc = new TaiKhoanCoKyHan(KyHan.SAU_THANG, tiengui);
                                             khDN.themAccount(acc);
-                                            System.out.println("=== THONG TIN TAI KHOAN VUA TAO ===");                                            
+                                            System.out.println("=== THONG TIN TAI KHOAN VUA TAO ===");
                                             acc.hienThiTK();
-                                            
+
                                             break;
                                         }
-                                        
+
                                         case 4: {
                                             acc = new TaiKhoanCoKyHan(KyHan.MUOIHAI_THANG, tiengui);
                                             System.out.println("=== THONG TIN TAI KHOAN VUA TAO ===");
                                             khDN.themAccount(acc);
-                                            acc.hienThiTK();      
-                                            
+                                            acc.hienThiTK();
+
                                             break;
                                         }
                                     }
@@ -262,12 +260,16 @@ public class demo {
                                 DungChung.sc.nextLine();
                                 System.out.println("=== Danh sach tai khoan ===");
                                 khDN.xuatAccount();
-                                System.out.print("    Nhap so so thu tu tai khoan co ky han ban muon rut: ");
+                                System.out.print("    Nhap so thu tu tai khoan co ky han ban muon rut: ");
                                 int stt = DungChung.sc.nextInt();
 //                                kh.getDsAC().get(stt).hienThiTK();
-                                System.out.print("    Nhap so tien ban muon rut: ");
-                                double tienrutTKCoKH = DungChung.sc.nextDouble();
-                                khDN.getDsAC().get(stt).rutTien(tienrutTKCoKH);
+                                double tienrutTKCKH;
+                                do {
+                                    System.out.print("    Nhap so tien muon rut (=so du hien tai): ");
+                                    tienrutTKCKH = DungChung.sc.nextDouble();
+                                } while (tienrutTKCKH != khDN.getDsAC().get(stt).soDu);
+                                khDN.getDsAC().get(stt).rutTien(tienrutTKCKH);
+                                khDN.getTk().soDu = khDN.getTk().soDu + (tienrutTKCKH + (tienrutTKCKH * 0.002) / 12);
                                 khDN.getDsAC().get(stt).hienThiTK();
 
                                 break;

@@ -23,8 +23,7 @@ public enum KyHan {
         @Override
         public double tinhTienLai(double st) {
 //            return (st * 0.2) / (100);
-//             return st*0.002/12;
-            return st * 5;
+             return st*0.002/12;
         }
     },
     MOT_TUAN {
