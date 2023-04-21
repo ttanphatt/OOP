@@ -32,8 +32,6 @@ public class QuanLyKhachHang {
     //tinh lai suat theo STK
     public void tinhLaiTheoSTK(String stk) {
         KhachHang kh = this.dsKH.stream().filter(h -> h.getMaSoKH().equals(stk)).findFirst().get();
-//        for (Account ac : kh.getDsAC()) {
-//            ac.hienThiTK();
         System.out.printf("Tien lai = %.0fVND\n", kh.getTk().tinhTienLai());
     }
 

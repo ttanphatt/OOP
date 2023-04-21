@@ -24,7 +24,7 @@ public class demo {
         kh1.themAccount(acc2, acc3);
         acc2.setNgayDaoHan(new GregorianCalendar());
         acc3.setNgayDaoHan(new GregorianCalendar());
-        
+
         System.out.printf("*Password: %d\n", kh1.getTk().matKhau);
         System.out.printf("So tai khoan khong ky han: %s\n", kh1.getMaSoKH());
         System.out.printf("So tai khoan co ky han: %s\n", acc2.getSTKcoKyHan());
@@ -155,7 +155,7 @@ public class demo {
 
                     int chon3;
                     do {
-                        System.out.printf("\n=== MENU KHACH HANG ===\n*STK: %s\n*Ho & ten: %s\n", khDN.getMaSoKH(), khDN.getHoTen());
+                        System.out.printf("\n==== MENU KHACH HANG ====\n*STK: %s\n*Ho & ten: %s\n", khDN.getMaSoKH(), khDN.getHoTen());
                         khDN.getTk().hienThiTK();
                         System.out.print(""
                                 + "1. Mo Tai Khoan Co Ky Han\n"
@@ -172,13 +172,13 @@ public class demo {
                             case 1: {
                                 double tiengui;
                                 do {
-                                    System.out.print("Nhap so tien muon gui (>=100000): ");
+                                    System.out.print("     Nhap so tien muon gui (>=100000): ");
                                     tiengui = DungChung.sc.nextDouble();
                                 } while (tiengui < 100000);
 
                                 double tienconlai = khDN.getTk().soDu - tiengui;
                                 if (tienconlai < 50000 || tiengui < 100000) {
-                                    System.out.print("Khong du tien de mo tai khoang co ki han!");
+                                    System.out.print("\nSO DU khong du tien de mo tai khoan co ki han!\n");
                                 } else {
                                     khDN.getTk().soDu = tienconlai;
                                     System.out.print("    Ky han: \n"
@@ -231,7 +231,7 @@ public class demo {
                             break;
 //                                
                             case 2: {
-                                System.out.print("So tien muon nap vao tai khoan chinh (>=50000): ");
+                                System.out.print("     So tien muon nap vao tai khoan chinh (>=50000): ");
                                 double tiennapTKC = DungChung.sc.nextDouble();
                                 do {
                                     if (tiennapTKC < 50000) {
@@ -239,26 +239,30 @@ public class demo {
                                         tiennapTKC = DungChung.sc.nextDouble();
                                     }
                                 } while (tiennapTKC < 50000);
-                                System.out.println("Nap tien thanh cong!!!\n");
-//                                System.out.printf("So tai khoan: %s\n", kh.getMaSoKH());
+                                System.out.println("\nNap tien thanh cong!");
                                 khDN.getTk().nopTien(tiennapTKC);
 //                                acc1.hienThiTK();
 
                                 break;
                             }
                             case 3: {
-                                System.out.print("So tien muon rut tu tai khoan chinh: ");
+                                System.out.print("     So tien muon rut tu tai khoan chinh: ");
                                 double tienrutTKC = DungChung.sc.nextDouble();
-                                System.out.println("Rut tien thanh cong!!!\n");
-//                                System.out.printf("So tai khoan: %s\n", kh.getMaSoKH());                                
-                                khDN.getTk().rutTien(tienrutTKC);
+
+//                                System.out.printf("So tai khoan: %s\n", kh.getMaSoKH());     
+                                if (tienrutTKC > khDN.getTk().soDu && khDN.getTk().soDu > 50000) {
+                                    System.out.println("So du khong du de rut!");
+                                } else {
+                                    khDN.getTk().rutTien(tienrutTKC);
+                                    System.out.println("\nRut tien thanh cong!!!\n");
+                                }
 //                                acc1.hienThiTK();
 
                                 break;
                             }
                             case 4: {
                                 DungChung.sc.nextLine();
-                                System.out.println("=== Danh sach tai khoan ===");
+                                System.out.println("\n=== DANH SACH TAI KHOAN ===");
                                 khDN.xuatAccount();
                                 System.out.print("    Nhap so thu tu tai khoan co ky han ban muon rut: ");
                                 int stt = DungChung.sc.nextInt();
@@ -275,17 +279,17 @@ public class demo {
                                 break;
                             }
                             case 5: {
-                                System.out.print("Nhap mat khau moi: ");
+                                System.out.print("     Nhap mat khau moi: ");
                                 int matkhauMoi = DungChung.sc.nextInt();
                                 khDN.getTk().doiMatKhau(matkhauMoi);
-                                System.out.println("Doi mat khau thanh cong! Vui long dang nhap lai");
+                                System.out.println("\nDoi mat khau thanh cong!\n");
                                 break;
                             }
                             case 6: {
                                 DungChung.sc.nextLine();
-                                System.out.println("=== Danh sach tai khoan ===");
+                                System.out.println("=== DANH SACH TAI KHOAN ===");
                                 khDN.xuatAccount();
-                                System.out.print("    Nhap so so thu tu tai khoan co ky han ban muon rut: ");
+                                System.out.print("    Nhap so thu tu tai khoan co ky han ban muon nop: ");
                                 int stt = DungChung.sc.nextInt();
                                 int tien;
                                 do {

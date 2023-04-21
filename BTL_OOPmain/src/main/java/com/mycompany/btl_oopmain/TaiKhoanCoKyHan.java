@@ -67,35 +67,22 @@ public class TaiKhoanCoKyHan extends Account {
             if ((a.getSoDu() - st) > 50000 && st >= 100000) {
                 this.setSoDu(this.getSoDu() + st);
                 a.setSoDu(a.getSoDu() - st);
-                System.out.println("Nop thanh cong");
-                System.out.printf("So tien sau khi nop: %.1f", this.getSoDu());
+                System.out.println("Nop tien thanh cong!");
+                System.out.printf("So du sau khi nop: %.0fVND\n", this.getSoDu());
             } else {
-                System.out.println("So du khong du");
+                System.out.println("So du khong du!");
             }
 
         }
-//            
-//        if (st <= this.getSoDu() || this.getSoDu() >= 50000) {
-//            if (!isKTDaoHan()) {
-//                System.out.println("Chua den ngay dao han de nop tien!");
-//            } else {
-//                System.out.println("Nhap so tien muon nop: ");
-//                st = DungChung.sc.nextDouble();
-//            }
-//            
-//        }
-//        else{
-//            System.out.println("Khong du dieu kien de nop tien!");
-//        }
     }
 
     @Override
     public void rutTien(double st) {
         if (!isKTDaoHan()) {
-            System.out.print("Chua den ngay dao han. Neu muon rut truoc han (lai mac dinh) chon y/n:");
+            System.out.print("Chua den ngay dao han! Neu muon rut se nhan (lai mac dinh) chon Yes/No:");
             DungChung.sc.nextLine();
             String yn = DungChung.sc.nextLine();
-            if (yn.equals("y")) {
+            if (yn.equals("Yes") || yn.equals("yes") || yn.equals("y")) {
                 super.rutTien();
                 System.out.println("Rut tien thanh cong!\n");
             } else {
@@ -110,40 +97,16 @@ public class TaiKhoanCoKyHan extends Account {
             super.rutTien();
             this.soDu = super.tongSoDu();
         }
-    }
-
-//    @Override
-//    public void rutTien(double st) {
-//        if (st <= this.getSoDu()) {
-//            if (!isKTDaoHan()) {
-//                System.out.println("Chua den han rut tien!");
-//                System.out.print("    Neu muon rut tien truoc ngay dao han"
-//                        + "(lai suat mac dinh) chon yes/no de thuc hien rut: ");
-//                DungChung.sc.nextLine();
-//                String yn = DungChung.sc.nextLine();
-//                if (yn.equals("yes")) {
-//                    super.rutTien(st);
-//                    super.tongSoDu();
-//                    
-////                    st += super.tongSoDu();
-////                    this.soDu =this.soDu (this.soDu * 0.002) / 12;
-////                    this.soDu = super.tongSoDu();
-//                    System.out.println("Rut tien thanh cong!");
-//                } else {
-//                    System.out.println("Rut tien khong thanh cong!");
-//                }
-//
-//            } else {
-//                super.tongSoDu();
-//                rutTien(st);
-//
-//            }
-//        } else {
-//            System.out.println("So tien ban muon rut lon hon so tien co trong tai khoan");
-//        }
-//    }
-//
-//    
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //==============================================
     /**
      * @return the ngayDaoHan

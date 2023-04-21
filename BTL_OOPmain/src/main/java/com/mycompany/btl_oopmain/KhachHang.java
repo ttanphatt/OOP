@@ -113,9 +113,9 @@ public class KhachHang {
         System.out.printf("Gioi tinh: %s\n", this.gioiTinh);
         System.out.printf("Que quan: %s\n", this.queQuan);
         System.out.printf("Ngay sinh: %s\n", DungChung.f.format(this.ngaySinh));
-        System.out.printf("CCCD: %S\n", this.CCCD);
-        System.out.printf("username: %S\n", this.username);
-        System.out.printf("So du: %s\n", this.tk.soDu);
+        System.out.printf("CCCD: %s\n", this.CCCD);
+        System.out.printf("username: %s\n", this.username);
+        System.out.printf("So du: %.0fVND\n", this.tk.soDu);
     }
 
     /**
