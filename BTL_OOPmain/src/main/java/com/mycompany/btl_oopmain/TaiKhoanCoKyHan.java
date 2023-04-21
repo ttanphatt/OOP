@@ -58,8 +58,22 @@ public class TaiKhoanCoKyHan extends Account {
         System.out.printf("So tai khoan: %s\n", this.getSTKcoKyHan());
     }
 
-//    @Override
-//    public void nopTien(double st) {
+    @Override
+    public void nopTien(double st, Account a) {
+        if (!isKTDaoHan()) {
+            System.out.println("Chua den ngay dao han de nop tien!");
+        } else {
+            if ((a.getSoDu() - st) > 50000 && st >= 100000) {
+                this.setSoDu(this.getSoDu() + st);
+                a.setSoDu(a.getSoDu() - st);
+                System.out.println("Nop thanh cong");
+                System.out.printf("So tien sau khi nop: %.1f", this.getSoDu());
+            } else {
+                System.out.println("So du khong du");
+            }
+
+        }
+//            
 //        if (st <= this.getSoDu() || this.getSoDu() >= 50000) {
 //            if (!isKTDaoHan()) {
 //                System.out.println("Chua den ngay dao han de nop tien!");
@@ -72,7 +86,7 @@ public class TaiKhoanCoKyHan extends Account {
 //        else{
 //            System.out.println("Khong du dieu kien de nop tien!");
 //        }
-//    }
+    }
 
     @Override
     public void rutTien(double st) {

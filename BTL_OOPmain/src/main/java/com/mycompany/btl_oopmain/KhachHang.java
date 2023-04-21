@@ -17,7 +17,8 @@ import java.util.List;
  * @author Huỳnh Minh Hoàng
  */
 public class KhachHang {
-    protected List<Account> dsAC = new ArrayList<>();
+
+    private List<TaiKhoanCoKyHan> dstkkh = new ArrayList<>();
     private static int dem = 1;
     private String maSoKH;
     private String hoTen;
@@ -26,9 +27,10 @@ public class KhachHang {
     private String CCCD;
     private Date ngaySinh;
     private double soTienGui;
-    
+
+    private TaiKhoan tk;
+
     private String username;
-    
 
     {
         GregorianCalendar g = new GregorianCalendar();
@@ -38,8 +40,8 @@ public class KhachHang {
 
     public KhachHang() {
     }
-    
-    public KhachHang(String hoTen, String gioiTinh, String queQuan, String CCCD, Date ngaySinh, double soTienGui, String username) {
+
+    public KhachHang(String hoTen, String gioiTinh, String queQuan, String CCCD, Date ngaySinh, double soTienGui, String username, TaiKhoan tk) {
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.queQuan = queQuan;
@@ -47,9 +49,10 @@ public class KhachHang {
         this.ngaySinh = ngaySinh;
         this.soTienGui = soTienGui;
         this.username = username;
+        this.tk = tk;
     }
 
-    public KhachHang(String hoTen, String gioiTinh, String queQuan, String CCCD, String ngaySinh, double soTienGui, String username) throws ParseException {
+    public KhachHang(String hoTen, String gioiTinh, String queQuan, String CCCD, String ngaySinh, double soTienGui, String username, TaiKhoan tk) throws ParseException {
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.queQuan = queQuan;
@@ -57,21 +60,23 @@ public class KhachHang {
         this.ngaySinh = DungChung.f.parse(ngaySinh); //chua hieu lam
         this.soTienGui = soTienGui;
         this.username = username;
+        this.tk = tk;
     }
-    
-    public void themAccount(Account... ac) {
-        this.dsAC.addAll(Arrays.asList(ac));
+
+    public void themAccount(TaiKhoanCoKyHan... ac) {
+        this.dstkkh.addAll(Arrays.asList(ac));
     }
+
     public void xuatAccount() {
-        this.dsAC.forEach(Account::hienThiTK);
+        this.tk.hienThiTK();
+        this.dstkkh.forEach(TaiKhoanCoKyHan::hienThiTK);
+        
     }
-    
+
 //    public void xuatDSTKCoKH(){
 //        this.dsAC.forEach(taiKhoanCoKyHan -> taiKhoanCoKyHan.hienThiTK());
 //    }
-    
-    
-    public void nhapKH() throws ParseException{
+    public void nhapKH() throws ParseException {
         DungChung.sc.nextLine();
         System.out.print("Ho & ten: ");
         this.hoTen = DungChung.sc.nextLine();
@@ -85,25 +90,23 @@ public class KhachHang {
         this.CCCD = DungChung.sc.nextLine();
         System.out.print("So tien gui (>50000VND): ");
         this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
-        do {            
-            if(soTienGui < 50000){
-                System.out.printf("Vui5 long nhap lai!: ");
+        do {
+            if (soTienGui < 50000) {
+                System.out.printf("Vui long nhap lai!: ");
                 this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
             }
         } while (soTienGui < 50000);
         System.out.print("*Username: ");
         this.username = DungChung.sc.nextLine();
+        this.tk = new TaiKhoan(soTienGui);
     }
-    
+
     public double soTienGui() {
         double tong = 0;
-        for (Account ac : this.dsAC) {
-            tong += ac.getSoDu();
-
-        }
+        tong += tk.getSoDu();
         return tong;
     }
-    
+
     public void hienThiKH() {
         System.out.printf("***STK: %s\n", this.maSoKH);
         System.out.printf("Ho & ten: %s\n", this.hoTen);
@@ -112,12 +115,9 @@ public class KhachHang {
         System.out.printf("Ngay sinh: %s\n", DungChung.f.format(this.ngaySinh));
         System.out.printf("CCCD: %S\n", this.CCCD);
         System.out.printf("username: %S\n", this.username);
-//        System.out.printf("Username: %s\n", this.maSoKH);
+        System.out.printf("So du: %s\n", this.tk.soDu);
     }
 
-    
-    
-    
     /**
      * @return the maSTK
      */
@@ -233,18 +233,46 @@ public class KhachHang {
     /**
      * @return the listAcc
      */
-    public List<Account> getDsAC() {
-        return dsAC;
+    public List<TaiKhoanCoKyHan> getDsAC() {
+        return dstkkh;
     }
 
     /**
      * @param listAcc the listAcc to set
      */
-    public void setDsAC(List<Account> dsAC) {
-        this.dsAC = dsAC;
+    public void setDsAC(List<TaiKhoanCoKyHan> dstkkh) {
+        this.dstkkh = dstkkh;
     }
 
     boolean isEmpty() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    /**
+     * @return the dstkkh
+     */
+    public List<TaiKhoanCoKyHan> getDstkkh() {
+        return dstkkh;
+    }
+
+    /**
+     * @param dstkkh the dstkkh to set
+     */
+    public void setDstkkh(List<TaiKhoanCoKyHan> dstkkh) {
+        this.dstkkh = dstkkh;
+    }
+
+    /**
+     * @return the tk
+     */
+    public TaiKhoan getTk() {
+        return tk;
+    }
+
+    /**
+     * @param tk the tk to set
+     */
+    public void setTk(TaiKhoan tk) {
+        this.tk = tk;
     }
 }

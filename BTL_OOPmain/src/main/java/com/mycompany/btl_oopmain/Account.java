@@ -56,6 +56,11 @@ public abstract class Account {
         if (this.soDu >= 0)
             this.soDu += st;
     }
+    
+    public void nopTien(double st, Account a) {
+        if (this.soDu >= 0)
+            this.soDu += st;
+    }
 
     public void rutTien(double st) {
         this.soDu -= st;
