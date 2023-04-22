@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class KhachHang {
 
-    private List<TaiKhoanCoKyHan> dstkkh = new ArrayList<>();
     private static int dem = 1;
     private String maSoKH;
     private String hoTen;
@@ -62,27 +61,14 @@ public class KhachHang {
         this.username = username;
         this.tk = tk;
     }
-
-    public void themAccount(TaiKhoanCoKyHan... ac) {
-        this.dstkkh.addAll(Arrays.asList(ac));
-    }
-
-    public void xuatAccount() {
-        this.tk.hienThiTK();
-        this.dstkkh.forEach(TaiKhoanCoKyHan::hienThiTK);
-        
-    }
-
-//    public void xuatDSTKCoKH(){
-//        this.dsAC.forEach(taiKhoanCoKyHan -> taiKhoanCoKyHan.hienThiTK());
-//    }
+    
     public void nhapKH() throws ParseException {
         DungChung.sc.nextLine();
         System.out.print("Ho & ten: ");
         this.hoTen = DungChung.sc.nextLine();
         System.out.print("Gioi tinh: ");
         this.gioiTinh = DungChung.sc.nextLine();
-        System.out.print("Ngay sinh: ");
+        System.out.print("Ngay sinh (dd/MM/yyyy): ");
         this.ngaySinh = DungChung.f.parse(DungChung.sc.nextLine());
         System.out.print("Que quan: ");
         this.queQuan = DungChung.sc.nextLine();
@@ -92,7 +78,7 @@ public class KhachHang {
         this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
         do {
             if (soTienGui < 50000) {
-                System.out.printf("Vui long nhap lai!: ");
+                System.out.printf("Vui long nhap lai! (>50000VND): ");
                 this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
             }
         } while (soTienGui < 50000);
@@ -233,34 +219,30 @@ public class KhachHang {
     /**
      * @return the listAcc
      */
-    public List<TaiKhoanCoKyHan> getDsAC() {
-        return dstkkh;
-    }
+//    public List<TaiKhoanCoKyHan> getDsAC() {
+//        return dstkkh;
+//    }
 
     /**
      * @param listAcc the listAcc to set
      */
-    public void setDsAC(List<TaiKhoanCoKyHan> dstkkh) {
-        this.dstkkh = dstkkh;
-    }
-
-    boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    public void setDsAC(List<TaiKhoanCoKyHan> dstkkh) {
+//        this.dstkkh = dstkkh;
+//    }
 
     /**
      * @return the dstkkh
      */
-    public List<TaiKhoanCoKyHan> getDstkkh() {
-        return dstkkh;
-    }
+//    public List<TaiKhoanCoKyHan> getDstkkh() {
+//        return dstkkh;
+//    }
 
     /**
      * @param dstkkh the dstkkh to set
      */
-    public void setDstkkh(List<TaiKhoanCoKyHan> dstkkh) {
-        this.dstkkh = dstkkh;
-    }
+//    public void setDstkkh(List<TaiKhoanCoKyHan> dstkkh) {
+//        this.dstkkh = dstkkh;
+//    }
 
     /**
      * @return the tk

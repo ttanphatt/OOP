@@ -4,9 +4,7 @@
  */
 package com.mycompany.btl_oopmain;
 
-import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 
@@ -22,7 +20,7 @@ public abstract class Account {
     
     {
         GregorianCalendar d = new GregorianCalendar();
-        matKhau = (int) (Math.random() * 999999 + 1);
+        matKhau = (int) ((Math.random() * (900000)) + 100000);
         ngayTaoTK = new GregorianCalendar();
         
     }
@@ -37,7 +35,7 @@ public abstract class Account {
     
     public void hienThiTK() {
         System.out.printf("***Loai TK: %s\n", this.loaiTK);
-        System.out.printf("So du: %.0f\n", this.soDu);
+        System.out.printf("So du: %.0fVND\n", this.soDu);
     }
     
     public abstract double tinhTienLai();

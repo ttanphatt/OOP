@@ -5,9 +5,7 @@
 package com.mycompany.btl_oopmain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -16,7 +14,6 @@ import java.util.stream.Collectors;
 public class QuanLyKhachHang {
 
     private List<KhachHang> dsKH = new ArrayList<>();
-    private List<TaiKhoanCoKyHan> dsTKKH = new ArrayList<>();
 
     
     //them KH
@@ -38,7 +35,6 @@ public class QuanLyKhachHang {
 
 //    tim KH theo Ten
     public KhachHang timKHTheoTen(String ht) {
-//        return this.dsKH.stream().filter(t -> t.getHoTen().equalsIgnoreCase(ht)).findFirst().get();
         for (KhachHang kh : dsKH) {
             if (kh.getHoTen().equals(ht)) {
                 return kh;
@@ -49,7 +45,6 @@ public class QuanLyKhachHang {
 
     //tim KH theo STK
     public KhachHang timKHTheoSTK(String stk) {
-//        return this.dsKH.stream().filter(t -> t.getMaSoKH().equalsIgnoreCase(stk)).findFirst().get();
         for (KhachHang kh : dsKH) {
             if (kh.getMaSoKH().equals(stk)) {
                 return kh;
@@ -60,7 +55,6 @@ public class QuanLyKhachHang {
 
     //hien thi danh sach tai khoan cua KH dang co
     public KhachHang timDSTKKH(String stk) {
-//        return this.dsKH.stream().filter(t -> t.getMaSoKH().equals(stk)).findFirst().get();
         for (KhachHang kh : dsKH) {
             if (kh.getMaSoKH().equals(stk)) {
                 return kh;
@@ -78,14 +72,6 @@ public class QuanLyKhachHang {
         });
     }
 
-    //login
-//    public KhachHang dangNhap(String username, int password) {
-//        KhachHang kh = this.dsKH.stream().filter(h -> h.getUsername().equals(username)).findFirst().get();
-//        if (kh.getDsAC().get(0).matKhau == password)
-//            return kh;
-//        else
-//            return null;
-//    }
     public KhachHang dangNhap(String username, int password) {
         for (KhachHang kh : dsKH) {
             if (kh.getUsername().equals(username)) {
@@ -98,6 +84,9 @@ public class QuanLyKhachHang {
         }
         return null;
     }
+    
+    
+    
 
     //==============================================
     /**

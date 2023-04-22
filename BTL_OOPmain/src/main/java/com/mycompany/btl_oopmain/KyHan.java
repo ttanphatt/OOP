@@ -4,28 +4,26 @@
  */
 package com.mycompany.btl_oopmain;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.text.rtf.RTFEditorKit;
 
 /**
  *
  * @author Huỳnh Minh Hoàng
  */
 public enum KyHan {
-    MACDINH {
-        @Override
-        public Calendar tinhDaoHan(Calendar dmy) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        @Override
-        public double tinhTienLai(double st) {
-//            return (st * 0.2) / (100);
-             return st*0.002/12;
-        }
-    },
+//    MACDINH {
+//        @Override
+//        public Calendar tinhDaoHan(Calendar dmy) {
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        }
+//
+//        @Override
+//        public double tinhTienLai(double st) {
+////            return (st * 0.2) / (100);
+//             return st*0.002/12;
+//        }
+//    },
     MOT_TUAN {
         @Override
         public Calendar tinhDaoHan(Calendar dmy) {
