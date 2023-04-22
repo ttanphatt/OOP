@@ -7,44 +7,40 @@ package com.mycompany.btl_oopmain;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-
 /**
  *
  * @author Huỳnh Minh Hoàng
  */
 public abstract class Account {
+
     protected int matKhau;
     protected double soDu;
     protected String loaiTK;
     protected Calendar ngayTaoTK;
-    
+
     {
         GregorianCalendar d = new GregorianCalendar();
         matKhau = (int) ((Math.random() * (900000)) + 100000);
         ngayTaoTK = new GregorianCalendar();
-        
+
     }
-    
 
     public Account(double soDu, String loaiTK) {
         this.soDu = soDu;
         this.loaiTK = loaiTK;
     }
 
-    
-    
     public void hienThiTK() {
         System.out.printf("***Loai TK: %s\n", this.loaiTK);
         System.out.printf("So du: %.0fVND\n", this.soDu);
     }
-    
+
     public abstract double tinhTienLai();
-    
+
     public double tongSoDu() {
         return this.soDu += this.tinhTienLai();
     }
-    
-    
+
     public int tinhNgayGui() {
         int d1 = this.ngayTaoTK.get(Calendar.DAY_OF_YEAR);
         int d2 = new GregorianCalendar().get(Calendar.DAY_OF_YEAR);
@@ -52,13 +48,15 @@ public abstract class Account {
     }
 
     public void nopTien(double st) {
-        if (this.soDu >= 0)
+        if (this.soDu >= 0) {
             this.soDu += st;
+        }
     }
-    
+
     public void nopTien(double st, Account a) {
-        if (this.soDu >= 0)
+        if (this.soDu >= 0) {
             this.soDu += st;
+        }
     }
 
     public void rutTien(double st) {
@@ -72,12 +70,7 @@ public abstract class Account {
     public void doiMatKhau(int mk) {
         this.matKhau = mk;
     }
-    
-    
-    
-    
-    
-    
+
     //=============================================
     /**
      * @return the matKhau
@@ -135,5 +128,4 @@ public abstract class Account {
         this.ngayTaoTK = ngayTaoTK;
     }
 
-    
 }

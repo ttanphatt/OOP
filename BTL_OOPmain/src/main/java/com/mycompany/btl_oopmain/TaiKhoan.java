@@ -13,8 +13,9 @@ import java.util.List;
  * @author Huỳnh Minh Hoàng
  */
 public class TaiKhoan extends Account {
+
     private List<TaiKhoanCoKyHan> dsTKKH = new ArrayList<>();
-    
+
     public TaiKhoan(double soTien) {
         super(soTien, "TAI KHOAN KHONG KY HAN");
     }
@@ -26,7 +27,6 @@ public class TaiKhoan extends Account {
     public void xuatTKKH() {
         this.dsTKKH.forEach(TaiKhoanCoKyHan::hienThiTK);
     }
-    
 
     @Override
     public double tinhTienLai() {
@@ -55,10 +55,6 @@ public class TaiKhoan extends Account {
         }
     }
 
-    
-    
-    
-    
     //=================================
     /**
      * @return the dsTKKH

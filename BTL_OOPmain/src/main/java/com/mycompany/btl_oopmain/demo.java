@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
  */
 public class demo {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, Exception {
         boolean f = true;
         int chon1 = 0;
         KhachHang khDN;
@@ -48,11 +48,10 @@ public class demo {
         QuanLyKhachHang qlKH = new QuanLyKhachHang();
         qlKH.themKH(kh1);
         qlKH.themKH(kh2);
-        
-        
+
         //-------------------------------------------------
         while (f) {
-            System.out.println("\n");
+            System.out.println("");
             System.out.println("*********** MENU ***********");
             System.out.print("1. Nhap thong tin khach hang\n"
                     + "2. Xuat thong tin khach Hang\n"
@@ -130,13 +129,12 @@ public class demo {
                             DungChung.sc.nextLine();
                             System.out.print("Nhap ma so Khach Hang can tim kiem: ");
                             String s = DungChung.sc.nextLine();
-                            KhachHang kh = qlKH.timDSTKKH(s);
+                            KhachHang kh = qlKH.timKHTheoSTK(s);
 
                             if (kh != null) {
                                 System.out.println("\n==== THONG TIN DS TAI KHOAN CUA KHACH HANG THEO STK ====");
                                 kh.getTk().hienThiTK();
                                 kh.getTk().xuatTKKH();
-
                             } else {
                                 System.out.println("Khong tim thay khach hang nao!");
                             }
@@ -246,22 +244,21 @@ public class demo {
                                         }
                                     }
                                 }
+                                break;
                             }
-                            break;
-//                                
+
                             case 2: {
                                 System.out.print("     So tien muon nap vao tai khoan chinh (>=50000): ");
                                 double tiennapTKC = DungChung.sc.nextDouble();
                                 do {
                                     if (tiennapTKC < 50000) {
-                                        System.out.print("Vui long nhap lai!: ");
+                                        System.out.print("Vui long nhap lai! (>=50000): ");
                                         tiennapTKC = DungChung.sc.nextDouble();
                                     }
                                 } while (tiennapTKC < 50000);
                                 System.out.println("\nNap tien thanh cong!");
                                 khDN.getTk().nopTien(tiennapTKC);
 //                                acc1.hienThiTK();
-
                                 break;
                             }
                             case 3: {
@@ -294,10 +291,9 @@ public class demo {
 
                                 khDN.getTk().getDsTKKH().get(stt).rutTien(tienrutTKCKH);
 
-//                                if (khDN.getTk().getDsTKKH().get(stt).soDu == 0) {
-//                                    khDN.getTk().soDu = khDN.getTk().soDu + (tienrutTKCKH + (tienrutTKCKH * 0.002) / 12);
-//                                }
-
+                                if (khDN.getTk().getDsTKKH().get(stt).soDu == 0) {
+                                    khDN.getTk().soDu = khDN.getTk().soDu + (tienrutTKCKH + (tienrutTKCKH * 0.002) / 12);
+                                }
                                 khDN.getTk().getDsTKKH().get(stt).hienThiTK();
 
                                 break;

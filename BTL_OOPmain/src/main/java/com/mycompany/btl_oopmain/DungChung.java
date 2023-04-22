@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Huỳnh Minh Hoàng
  */
 public class DungChung {
+
     public static final SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
     public static final Scanner sc = new Scanner(System.in);
 }

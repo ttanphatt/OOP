@@ -15,7 +15,6 @@ public class QuanLyKhachHang {
 
     private List<KhachHang> dsKH = new ArrayList<>();
 
-    
     //them KH
     public void themKH(KhachHang kh) {
         this.dsKH.add(kh);
@@ -29,9 +28,8 @@ public class QuanLyKhachHang {
     //tinh lai suat theo STK
     public void tinhLaiTheoSTK(String stk) {
         KhachHang kh = this.dsKH.stream().filter(h -> h.getMaSoKH().equals(stk)).findFirst().get();
-        System.out.printf("Tien lai = %.0fVND\n", kh.getTk().tinhTienLai());
+        System.out.printf("Tien lai (1 Thang) = %.0fVND\n", kh.getTk().tinhTienLai());
     }
-
 
 //    tim KH theo Ten
     public KhachHang timKHTheoTen(String ht) {
@@ -53,22 +51,12 @@ public class QuanLyKhachHang {
         return null;
     }
 
-    //hien thi danh sach tai khoan cua KH dang co
-    public KhachHang timDSTKKH(String stk) {
-        for (KhachHang kh : dsKH) {
-            if (kh.getMaSoKH().equals(stk)) {
-                return kh;
-            }
-        }
-        return null;
-    }
-
     //sap xep
     public void sapXepKH() {
         this.dsKH.sort((kh1, kh2) -> {
             double d1 = kh1.getSoTienGui();
             double d2 = kh2.getSoTienGui();
-            return -(d1 > d2 ? 1 : (d1 > d2 ? -1 : 0));
+            return -(d1 > d2 ? 1 : (d1 < d2 ? -1 : 0));
         });
     }
 
@@ -84,9 +72,6 @@ public class QuanLyKhachHang {
         }
         return null;
     }
-    
-    
-    
 
     //==============================================
     /**

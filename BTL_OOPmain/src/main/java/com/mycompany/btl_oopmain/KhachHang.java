@@ -56,35 +56,43 @@ public class KhachHang {
         this.gioiTinh = gioiTinh;
         this.queQuan = queQuan;
         this.CCCD = CCCD;
-        this.ngaySinh = DungChung.f.parse(ngaySinh); //chua hieu lam
+        this.ngaySinh = DungChung.f.parse(ngaySinh);
         this.soTienGui = soTienGui;
         this.username = username;
         this.tk = tk;
     }
-    
-    public void nhapKH() throws ParseException {
-        DungChung.sc.nextLine();
-        System.out.print("Ho & ten: ");
-        this.hoTen = DungChung.sc.nextLine();
-        System.out.print("Gioi tinh: ");
-        this.gioiTinh = DungChung.sc.nextLine();
-        System.out.print("Ngay sinh (dd/MM/yyyy): ");
-        this.ngaySinh = DungChung.f.parse(DungChung.sc.nextLine());
-        System.out.print("Que quan: ");
-        this.queQuan = DungChung.sc.nextLine();
-        System.out.print("CCCD: ");
-        this.CCCD = DungChung.sc.nextLine();
-        System.out.print("So tien gui (>50000VND): ");
-        this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
-        do {
-            if (soTienGui < 50000) {
-                System.out.printf("Vui long nhap lai! (>50000VND): ");
-                this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
-            }
-        } while (soTienGui < 50000);
-        System.out.print("*Username: ");
-        this.username = DungChung.sc.nextLine();
-        this.tk = new TaiKhoan(soTienGui);
+
+    public void nhapKH() throws Exception {
+        try {
+            DungChung.sc.nextLine();
+            System.out.print("Ho & ten: ");
+            this.hoTen = DungChung.sc.nextLine();
+            System.out.print("Gioi tinh: ");
+            this.gioiTinh = DungChung.sc.nextLine();
+            System.out.print("Ngay sinh (dd/MM/yyyy): ");
+            this.ngaySinh = DungChung.f.parse(DungChung.sc.nextLine());
+            System.out.print("Que quan: ");
+            this.queQuan = DungChung.sc.nextLine();
+            System.out.print("CCCD: ");
+            this.CCCD = DungChung.sc.nextLine();
+            System.out.print("So tien gui (>50000VND): ");
+            this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
+            do {
+                if (soTienGui < 50000) {
+                    System.out.printf("Vui long nhap lai! (>50000VND): ");
+                    this.soTienGui = Double.parseDouble(DungChung.sc.nextLine());
+                }
+            } while (soTienGui < 50000);
+            System.out.print("*Username: ");
+            this.username = DungChung.sc.nextLine();
+            this.tk = new TaiKhoan(soTienGui);
+        } catch (NullPointerException | ParseException e) {
+            System.out.println("Loi khi nhap ngay sinh!");
+        } catch (NumberFormatException e) {
+            System.out.println("Loi khi nhap so tien gui!");
+        } catch (Exception e) {
+            System.out.println("Loi khi nhap thong tin khach hang!");
+        }
     }
 
     public double soTienGui() {
@@ -103,7 +111,12 @@ public class KhachHang {
         System.out.printf("username: %s\n", this.username);
         System.out.printf("So du: %.0fVND\n", this.tk.soDu);
     }
-
+    
+    
+    
+    
+    
+    //========================================================
     /**
      * @return the maSTK
      */
@@ -222,28 +235,24 @@ public class KhachHang {
 //    public List<TaiKhoanCoKyHan> getDsAC() {
 //        return dstkkh;
 //    }
-
     /**
      * @param listAcc the listAcc to set
      */
 //    public void setDsAC(List<TaiKhoanCoKyHan> dstkkh) {
 //        this.dstkkh = dstkkh;
 //    }
-
     /**
      * @return the dstkkh
      */
 //    public List<TaiKhoanCoKyHan> getDstkkh() {
 //        return dstkkh;
 //    }
-
     /**
      * @param dstkkh the dstkkh to set
      */
 //    public void setDstkkh(List<TaiKhoanCoKyHan> dstkkh) {
 //        this.dstkkh = dstkkh;
 //    }
-
     /**
      * @return the tk
      */
