@@ -20,6 +20,15 @@ public class QuanLyKhachHang {
         this.dsKH.add(kh);
     }
 
+    public boolean isKHDaCo(KhachHang k) {
+        for (KhachHang khachhang : dsKH) {
+            if (khachhang.getUsername().equals(k.getUsername())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //hien thi KH
     public void xuatDSKH() {
         this.dsKH.forEach(KhachHang::hienThiKH);
@@ -28,6 +37,7 @@ public class QuanLyKhachHang {
     //tinh lai suat theo STK
     public void tinhLaiTheoSTK(String stk) {
         KhachHang kh = this.dsKH.stream().filter(h -> h.getMaSoKH().equals(stk)).findFirst().get();
+        System.out.printf("So du = %.0fVND\n", kh.getTk().soDu);
         System.out.printf("Tien lai (1 Thang) = %.0fVND\n", kh.getTk().tinhTienLai());
     }
 

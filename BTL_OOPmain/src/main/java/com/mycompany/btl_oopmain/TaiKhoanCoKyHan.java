@@ -57,7 +57,7 @@ public class TaiKhoanCoKyHan extends Account {
         if (!isKTDaoHan()) {
             System.out.println("Chua den ngay dao han de nop tien!");
         } else {
-            if ((a.getSoDu() - st) > 50000 && st >= 100000) {
+            if ((a.getSoDu() - st) >= 50000 && st >= 100000) {
                 this.setSoDu(this.getSoDu() + st);
                 a.setSoDu(a.getSoDu() - st);
                 System.out.println("Nop tien thanh cong!");
@@ -71,19 +71,20 @@ public class TaiKhoanCoKyHan extends Account {
     // this - co kh
     //a - khong kh
 
-    @Override
-    public void rutTien(double st) {
+    public void rutTien(double st, Account a) {
         if (!isKTDaoHan()) {
             System.out.print("Chua den ngay dao han! Neu muon rut se nhan (lai mac dinh) chon Yes/No:");
             DungChung.sc.nextLine();
             String yn = DungChung.sc.nextLine();
             if (yn.equals("Yes") || yn.equals("yes") || yn.equals("y") || yn.equals("Y")) {
                 super.rutTien();
+                a.setSoDu(a.soDu+(st+(st * 0.002)/12));
                 System.out.println("Rut tien thanh cong!\n");
             } else {
                 System.out.println("Rut tien KHONG thanh cong!\n");
             }
         } else {
+            a.setSoDu(a.soDu+(st+this.tinhTienLai()));
             rutTien();
         }
     }

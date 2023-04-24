@@ -6,6 +6,7 @@ package com.mycompany.btl_oopmain;
 
 import java.text.ParseException;
 import java.util.GregorianCalendar;
+import java.util.InputMismatchException;
 
 /**
  *
@@ -67,11 +68,15 @@ public class demo {
                     System.out.print("\n==== NHAP THONG TIN KHACH HANG ==== \n");
                     KhachHang kh = new KhachHang();
                     kh.nhapKH();
-                    qlKH.themKH(kh);
-                    System.out.printf("*Password: %d\n", kh.getTk().matKhau);
+                    if (qlKH.isKHDaCo(kh)) {
+                        qlKH.themKH(kh);
+                        System.out.printf("*Password: %d\n", kh.getTk().matKhau);
+                        System.out.println("\nThem khach hang thanh cong!");
+                    } else {
+                        System.out.println("\nUsername da ton tai! Them khach hang that bai!");
+                    }
                     break;
                 }//cs1
-
                 case 2: {
                     System.out.println("\n==== DANH SACH THONG TIN KHACH HANG ====");
                     qlKH.xuatDSKH();
@@ -82,7 +87,6 @@ public class demo {
                     DungChung.sc.nextLine();
                     System.out.print("Nhap STK: ");
                     String stk = DungChung.sc.nextLine();
-
                     qlKH.tinhLaiTheoSTK(stk);
                     break;
                 }//cs3
@@ -250,6 +254,20 @@ public class demo {
                             case 2: {
                                 System.out.print("     So tien muon nap vao tai khoan chinh (>=50000): ");
                                 double tiennapTKC = DungChung.sc.nextDouble();
+
+                                try {
+                                    if (tiennapTKC < 0) {
+                                        throw new Exception("So tien nop khong hop le!");
+                                    }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("So tien nop khong hop le!");
+                                    DungChung.sc.nextLine();
+                                    break;
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                    break;
+                                }
+
                                 do {
                                     if (tiennapTKC < 50000) {
                                         System.out.print("Vui long nhap lai! (>=50000): ");
@@ -258,14 +276,24 @@ public class demo {
                                 } while (tiennapTKC < 50000);
                                 System.out.println("\nNap tien thanh cong!");
                                 khDN.getTk().nopTien(tiennapTKC);
-//                                acc1.hienThiTK();
                                 break;
                             }
                             case 3: {
-                                System.out.print("     So tien muon rut tu tai khoan chinh: ");
+                                System.out.print("   So tien muon rut tu tai khoan chinh: ");
                                 double tienrutTKC = DungChung.sc.nextDouble();
+                                try {
+                                    if (tienrutTKC < 0) {
+                                        throw new Exception("So tien khong hop le!");
+                                    }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("So tien khong hop le!");
+                                    DungChung.sc.nextLine();
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
 
-                                if (tienrutTKC > khDN.getTk().soDu && khDN.getTk().soDu > 50000) {
+                                double tienConLaiTKC = khDN.getTk().soDu - tienrutTKC;
+                                if (tienrutTKC > khDN.getTk().soDu || tienConLaiTKC < 50000) {
                                     System.out.println("So du khong du de rut!");
                                 } else {
                                     khDN.getTk().rutTien(tienrutTKC);
@@ -289,11 +317,7 @@ public class demo {
                                     tienrutTKCKH = DungChung.sc.nextDouble();
                                 } while (tienrutTKCKH != khDN.getTk().getDsTKKH().get(stt).soDu);
 
-                                khDN.getTk().getDsTKKH().get(stt).rutTien(tienrutTKCKH);
-
-                                if (khDN.getTk().getDsTKKH().get(stt).soDu == 0) {
-                                    khDN.getTk().soDu = khDN.getTk().soDu + (tienrutTKCKH + (tienrutTKCKH * 0.002) / 12);
-                                }
+                                khDN.getTk().getDsTKKH().get(stt).rutTien(tienrutTKCKH,khDN.getTk());
                                 khDN.getTk().getDsTKKH().get(stt).hienThiTK();
 
                                 break;
